@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace Organizer 🗂️</title>
+  <title>Workspace Organizer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
     }
 
     header {
-      background-color: darkblue;
+      background-color: #6DBD86;
       color: white;
       padding: 20px 0;
       margin-bottom: 20px;
@@ -33,7 +33,7 @@
     }
 
     h2 {
-      color: darkblue;
+      color: #6DBD86;
       margin-top: 30px;
     }
 
@@ -50,7 +50,7 @@
       padding: 10px 20px;
       font-size: 16px;
       border: none;
-      background: darkblue;
+      background: #6DBD86;
       color: white;
       border-radius: 5px;
       cursor: pointer;
@@ -58,7 +58,7 @@
     }
 
     button:hover {
-      background: navy;
+      background: #55a56e;
     }
 
     ul {
@@ -69,6 +69,12 @@
 
     li {
       margin: 5px 0;
+      cursor: pointer;
+    }
+
+    li.done {
+      text-decoration: line-through;
+      color: gray;
     }
 
     textarea {
@@ -78,7 +84,7 @@
 </head>
 <body>
   <header>
-    <h1>Workspace Organizer 🗂️</h1>
+    <h1>Workspace Organizer</h1>
     <p>Organize your desk, tasks, and ideas!</p>
   </header>
 
@@ -106,6 +112,12 @@
       if(task !== '') {
         const li = document.createElement('li');
         li.textContent = task;
+
+        // Click to mark as done
+        li.addEventListener('click', function() {
+          li.classList.toggle('done');
+        });
+
         document.getElementById('task-list').appendChild(li);
         input.value = '';
       } else {
