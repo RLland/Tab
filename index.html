@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My First Website</title>
+  <title>Workspace Organizer 🗂️</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       text-align: center;
-      margin-top: 50px;
+      margin: 0;
+      padding: 0;
     }
+
+    header {
+      background-color: darkblue;
+      color: white;
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
+
     h1 {
-      color: darkblue;
+      margin: 0;
+      font-size: 2em;
     }
+
+    main {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: darkblue;
+      margin-top: 30px;
+    }
+
+    input[type="text"], textarea {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -20,20 +54,74 @@
       color: white;
       border-radius: 5px;
       cursor: pointer;
+      margin: 5px;
     }
+
     button:hover {
       background: navy;
+    }
+
+    ul {
+      text-align: left;
+      list-style-type: disc;
+      padding-left: 40px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    textarea {
+      resize: none;
     }
   </style>
 </head>
 <body>
-  <h1>Hello, World! 🌍</h1>
-  <p>This is my first website.</p>
-  <button onclick="sayHello()">Click me</button>
+  <header>
+    <h1>Workspace Organizer 🗂️</h1>
+    <p>Organize your desk, tasks, and ideas!</p>
+  </header>
+
+  <main>
+    <!-- Tasks Section -->
+    <h2>Tasks</h2>
+    <ul id="task-list">
+      <!-- Tasks will appear here -->
+    </ul>
+    <input type="text" id="task-input" placeholder="Add a new task">
+    <button onclick="addTask()">Add Task</button>
+
+    <!-- Notes Section -->
+    <h2>Notes</h2>
+    <textarea id="note-input" rows="5" placeholder="Write your notes here..."></textarea><br>
+    <button onclick="saveNote()">Save Note</button>
+    <p id="note-display"></p>
+  </main>
 
   <script>
-    function sayHello() {
-      alert("Hello from JavaScript!");
+    // Add Task Function
+    function addTask() {
+      const input = document.getElementById('task-input');
+      const task = input.value.trim();
+      if(task !== '') {
+        const li = document.createElement('li');
+        li.textContent = task;
+        document.getElementById('task-list').appendChild(li);
+        input.value = '';
+      } else {
+        alert('Please enter a task!');
+      }
+    }
+
+    // Save Note Function
+    function saveNote() {
+      const note = document.getElementById('note-input').value.trim();
+      if(note !== '') {
+        document.getElementById('note-display').textContent = "Your Note: " + note;
+        document.getElementById('note-input').value = '';
+      } else {
+        alert('Please write something in your note!');
+      }
     }
   </script>
 </body>
